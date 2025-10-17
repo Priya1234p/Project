@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlock Account | Ashok IT</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+body {
+	background-color: #f8f9fa;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.unlock-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.unlock-card {
+	display: flex;
+	width: 850px;
+	border-radius: 15px;
+	box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	background: white;
+}
+
+.unlock-left {
+	flex: 1;
+	padding: 40px;
+}
+
+.unlock-left img {
+	height: 50px;
+	margin-bottom: 15px;
+}
+
+.unlock-left h3 {
+	font-weight: 600;
+	color: #1a4ea0;
+}
+
+.unlock-left label {
+	font-weight: 500;
+	color: #333;
+}
+
+.form-control {
+	border-radius: 10px;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+
+.btn-unlock {
+	width: 100%;
+	padding: 12px;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	font-weight: 600;
+	background: linear-gradient(90deg, #1a4ea0, #d4af37);
+	transition: all 0.3s ease;
+}
+
+.btn-unlock:hover {
+	background: linear-gradient(90deg, #0f3470, #b89524);
+	transform: translateY(-2px);
+}
+
+.unlock-right {
+	flex: 1;
+	background: linear-gradient(135deg, #1a4ea0, #d4af37);
+	color: white;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.unlock-right h4 {
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+.unlock-right p {
+	font-size: 15px;
+	opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+	<div class="unlock-container">
+		<div class="unlock-card">
+
+			<!-- Left section (Form) -->
+			<div class="unlock-left">
+				<img src="/images/logo.png" alt="Ashok IT Logo">
+				<!-- place your logo in static/images/ -->
+				<h3>Unlock your account here</h3>
+				<p>
+					Your Email: <strong th:text="${email}">priyakumariyadav99@gmail.com</strong>
+				</p>
+
+				<form th:action="@{/unlock(email=${email})}" method="post">
+					<div class="mb-3">
+						<label>Temporary Password</label> <input type="password"
+							name="tempPwd" class="form-control" required>
+					</div>
+					<div class="mb-3">
+						<label>New Password</label> <input type="password" name="newPwd"
+							class="form-control" required>
+					</div>
+					<div class="mb-3">
+						<label>Confirm Password</label> <input type="password"
+							name="confirmPwd" class="form-control" required>
+					</div>
+					<button type="submit" class="btn btn-primary w-100">UNLOCK</button>
+				</form>
+
+
+			</div>
+
+			<!-- Right section (Info) -->
+			<div class="unlock-right">
+				<h4>Ashok IT is more than just a Software Training Institute</h4>
+				<p>Student Satisfaction is the most important for us. Learn
+					More, Lead Anywhere. 💻</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

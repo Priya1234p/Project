@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Enquiry | Ashok IT</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; font-family: 'Poppins', sans-serif; }
+    .card { box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 10px; padding: 25px; margin-top: 30px; }
+    .btn-submit { background-color: #1a4ea0; border: none; color: white; border-radius: 25px; padding: 10px 20px; }
+    .btn-submit:hover { background-color: #163f85; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="images/OIP.jpeg" height="55" alt=""></a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/dashboard">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/enquiry">Add Enquiry</a></li>
+        <li class="nav-item"><a class="nav-link" href="/view-enquiries">View Enquiries</a></li>
+      </ul>
+      <a href="/logout" class="btn btn-danger rounded-pill px-3">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card mx-auto" style="max-width: 600px;">
+    <h3 class="text-center mb-4 text-primary">Add Student Enquiry</h3>
+
+    <form th:action="@{/saveEnquiry}" th:object="${enquiry}" method="post">
+      <div class="mb-3">
+        <label>Student Name</label>
+        <input type="text" class="form-control" th:field="*{studentName}" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Contact Number</label>
+        <input type="text" class="form-control" th:field="*{contactNumber}" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Class Mode</label>
+        <select class="form-select" th:field="*{classMode}" required>
+          <option value="">-- Select --</option>
+          <option>Online</option>
+          <option>Offline</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Course</label>
+        <select class="form-select" th:field="*{course}" required>
+          <option>Java Fullstack</option>
+          <option>Python Fullstack</option>
+          <option>DevOps</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Enquiry Status</label>
+        <select class="form-select" th:field="*{status}" required>
+          <option>New</option>
+          <option>Enrolled</option>
+          <option>Lost</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn-submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

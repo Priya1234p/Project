@@ -1,6 +1,8 @@
 package com.emss.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
@@ -8,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.emss.entity.Employee;
-
+import com.emss.exception.ResourcesNotFound;
 import com.emss.repository.EmployeeRepository;
 
 @Service
@@ -57,8 +59,14 @@ public class EmployeeService {
 	}
 
 	public Employee getEmployeeById(long id) {
-		Employee employee = employeeRepository.findById(id).get();
-		return employee;
+		Optional<Employee> opEmp = employeeRepository.findById(id);
+		if(opEmp.isPresent()) {
+			Employee employee = opEmp.get();
+			return employee;
+		}else {
+			throw new ResourcesNotFound("Employee not found with id :" + id);
+		}
+		
 	}
 
 	public List<Employee> getRegistrations(int pageNo, int pageSize, String sortBy, String sortDir) {
